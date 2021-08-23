@@ -22,6 +22,7 @@ class LoginController extends Controller
         if(!empty($user)){
             $req->session()->put('sessionusername',$user->username);//session creation
             $req->session()->put('sessionusertype',$user->usertype);
+
             //cookies
 
             if($req->rememberme){
@@ -51,7 +52,8 @@ class LoginController extends Controller
                     fwrite($myfile, $txt);
                     fclose($myfile);
                 }    
-
+                $message = "wrong answer";
+                echo "<script type='text/javascript'>alert('$message');</script>";
                 return redirect('/admin');
 
             }
@@ -70,6 +72,7 @@ class LoginController extends Controller
             }
         }
         else{
+            $req->session()->put('login_failed','true');
             return redirect('/');
         }
 

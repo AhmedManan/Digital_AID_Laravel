@@ -30,37 +30,37 @@ function myTimer() {
 // 	else{
 // 	}
 
-function background() {
-		setInterval(myTimer, 10000)
+// function background() {
+// 		setInterval(myTimer, 10000)
 
-}
+// }
 
-	function myFunction(msg) {
-		var allmsgcount='';
-		// console.log(msg);
-		setTimeout(mymodal(msg), 2000);
+// 	function myFunction(msg) {
+// 		var allmsgcount='';
+// 		// console.log(msg);
+// 		setTimeout(mymodal(msg), 2000);
 	
-         function mymodal(msg){
+//          function mymodal(msg){
 			 
-			$("#notice").modal();
-			$('.modal-body').text(msg.description)
-			$.ajax({
-    			url:"/consumer/announcementseen/"+msg.id+"",
+// 			$("#notice").modal();
+// 			$('.modal-body').text(msg.description)
+// 			$.ajax({
+//     			url:"/consumer/announcementseen/"+msg.id+"",
     			
-    			success: function(response){
+//     			success: function(response){
 					
-					$('.notification').text(response.msgcount);
-					allmsgcount=response.msgcount;
+// 					$('.notification').text(response.msgcount);
+// 					allmsgcount=response.msgcount;
 					
-    			},
-    			error: function(err){
-    			    console.log(err)
-    			}
-				});
-		 }
+//     			},
+//     			error: function(err){
+//     			    console.log(err)
+//     			}
+// 				});
+// 		 }
 		 
 		 
-	}
+// 	}
 
 
 </script>
@@ -124,14 +124,9 @@ function background() {
 										<div class="u-img"><img src="/img/user/profilepic/{{$user->person_photo}}.jpg" alt="{{$user->first_name}}"></div>
 										<div class="u-text">
 											<h4>{{$user->username}}</h4>
-											<p class="text-muted">{{$user->first_name}} {{$user->last_name}}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+											<p class="text-muted">{{$user->first_name}} {{$user->last_name}}</p><a href="/consumer/viewprofile/{{$user->username}}" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
 										</div>
 									</li>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>
-									<a class="dropdown-item" href="#"><i class="ti-email"></i> Inbox</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="/logout"><i class="fa fa-power-off"></i> Logout</a>
 								</ul>

@@ -30,10 +30,14 @@ class DistributorController extends Controller
                 ->first();
         $allmessages= announcement::where('receiver','distributor')
                                     ->where('username','not like','%'.$username.'%')                                   
+                                    ->orWhere('receiver','all')
+                                    ->where('username','not like','%'.$username.'%') 
                                     ->get();
         $allmessagescount= announcement::where('receiver','distributor')
                                          ->where('username','not like','%'.$username.'%')
-                                            ->count();
+                                         ->orWhere('receiver','all')
+                                         ->where('username','not like','%'.$username.'%') 
+                                         ->count();
 
        return view('distributor.distributorhome') //common in all
                                                    ->with('user',$user)
@@ -83,12 +87,16 @@ class DistributorController extends Controller
                 ->where('login_creds.username','=',$username)
                 ->select('login_creds.id','user_infos.username', 'user_infos.first_name', 'user_infos.last_name','user_infos.person_photo' )
                 ->first();
-        $allmessages= announcement::where('receiver','distributor')
-                                    ->where('username','not like','%'.$username.'%')                                   
-                                    ->get();
-        $allmessagescount= announcement::where('receiver','distributor')
-                                         ->where('username','not like','%'.$username.'%')
-                                            ->count();
+                $allmessages= announcement::where('receiver','distributor')
+                ->where('username','not like','%'.$username.'%')                                   
+                ->orWhere('receiver','all')
+                ->where('username','not like','%'.$username.'%') 
+                ->get();
+                $allmessagescount= announcement::where('receiver','distributor')
+                     ->where('username','not like','%'.$username.'%')
+                     ->orWhere('receiver','all')
+                     ->where('username','not like','%'.$username.'%') 
+                     ->count();
          
          $users = DB::table('login_creds')
                            ->join('user_infos','login_creds.username','=','user_infos.username')
@@ -117,18 +125,22 @@ class DistributorController extends Controller
               ->where('login_creds.username','=',$username)
               ->select('login_creds.id','user_infos.username', 'user_infos.first_name', 'user_infos.last_name','user_infos.person_photo' )
               ->first();
-      $allmessages= announcement::where('receiver','distributor')
-                                  ->where('username','not like','%'.$username.'%')                                   
-                                  ->get();
-      $allmessagescount= announcement::where('receiver','distributor')
-                                       ->where('username','not like','%'.$username.'%')
-                                          ->count();
+              $allmessages= announcement::where('receiver','distributor')
+              ->where('username','not like','%'.$username.'%')                                   
+              ->orWhere('receiver','all')
+              ->where('username','not like','%'.$username.'%') 
+              ->get();
+                $allmessagescount= announcement::where('receiver','distributor')
+                   ->where('username','not like','%'.$username.'%')
+                   ->orWhere('receiver','all')
+                   ->where('username','not like','%'.$username.'%') 
+                   ->count();
 
       // $disinvdate=distributed_aid::where('c_username',$username)->groupBy('date')->get();
 
      $disinvdate= DB::table('distributed_aids')
                    ->select('date')
-                   ->where('c_username',$username)                    
+                   ->where('d_username',$username)                    
                    ->groupBy('date')
                    ->get();
                    
@@ -190,12 +202,16 @@ class DistributorController extends Controller
                 ->where('login_creds.username','=',$username)
                 ->select('login_creds.id','user_infos.username', 'user_infos.first_name', 'user_infos.last_name','user_infos.person_photo' )
                 ->first();
-        $allmessages= announcement::where('receiver','distributor')
-                                    ->where('username','not like','%'.$username.'%')                                   
-                                    ->get();
-        $allmessagescount= announcement::where('receiver','distributor')
-                                         ->where('username','not like','%'.$username.'%')
-                                            ->count();
+                $allmessages= announcement::where('receiver','distributor')
+                ->where('username','not like','%'.$username.'%')                                   
+                ->orWhere('receiver','all')
+                ->where('username','not like','%'.$username.'%') 
+                ->get();
+                $allmessagescount= announcement::where('receiver','distributor')
+                     ->where('username','not like','%'.$username.'%')
+                     ->orWhere('receiver','all')
+                     ->where('username','not like','%'.$username.'%') 
+                     ->count();
 
          $inventory = distributed_inventory::where('d_username',$username)->get();
          $inventoryCount =  distributed_inventory::where('d_username',$username)->count();
@@ -317,11 +333,15 @@ class DistributorController extends Controller
               ->select('login_creds.id','user_infos.username', 'user_infos.first_name', 'user_infos.last_name','user_infos.person_photo' )
               ->first();
               $allmessages= announcement::where('receiver','distributor')
-                                          ->where('username','not like','%'.$username.'%')                                   
-                                          ->get();
-              $allmessagescount= announcement::where('receiver','distributor')
-                                              ->where('username','not like','%'.$username.'%')
-                                              ->count();                 
+              ->where('username','not like','%'.$username.'%')                                   
+              ->orWhere('receiver','all')
+              ->where('username','not like','%'.$username.'%') 
+              ->get();
+                $allmessagescount= announcement::where('receiver','distributor')
+                   ->where('username','not like','%'.$username.'%')
+                   ->orWhere('receiver','all')
+                   ->where('username','not like','%'.$username.'%') 
+                   ->count();                 
 
               $userprofile = Login_cred::where('username',$usernameprofile)
                                           ->first();
@@ -446,12 +466,16 @@ class DistributorController extends Controller
            ->where('login_creds.username','=',$username)
            ->select('login_creds.id','user_infos.username', 'user_infos.email', 'user_infos.first_name', 'user_infos.last_name','user_infos.person_photo' )
            ->first();
-   $allmessages= announcement::where('receiver','consumer')
-                               ->where('username','not like','%'.$username.'%')                                   
-                               ->get();
-   $allmessagescount= announcement::where('receiver','consumer')
-                                    ->where('username','not like','%'.$username.'%')
-                                       ->count();
+           $allmessages= announcement::where('receiver','distributor')
+           ->where('username','not like','%'.$username.'%')                                   
+           ->orWhere('receiver','all')
+           ->where('username','not like','%'.$username.'%') 
+           ->get();
+            $allmessagescount= announcement::where('receiver','distributor')
+                ->where('username','not like','%'.$username.'%')
+                ->orWhere('receiver','all')
+                ->where('username','not like','%'.$username.'%') 
+                ->count();
     $email=$user->email;
     $report = report::where('sender_email',$email)->get();
     $reportcount = report::where('sender_email',$email)->count();

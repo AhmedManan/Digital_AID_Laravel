@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="/css/user/demo.css">
 </head>
 <!-- <body onload="setInterval(myTimer, 10000)"> -->
-<body onload="background()">
+<body>
 <!-- <body onload="myFunction()"> -->
 @include('consumer/consumerdashboard')
 			<div class="main-panel">

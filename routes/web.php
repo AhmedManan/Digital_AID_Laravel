@@ -22,6 +22,13 @@ Route::get('/registration','RegistrationController@index');
 
 Route::post('/registration','RegistrationController@registrationPost');
 
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
 
 Route::get('/logout','LogoutController@index');
 Route::get('/theme/{id}','AdminController@themeChange');
@@ -75,8 +82,8 @@ Route::group(['middleware'=>['logincheck']],function(){
         Route::get('/distributor/history','DistributorController@distributorhistory');
         Route::get('/distributor/viewprofile/{username}','DistributorController@viewProfile')->name('distributor.viewprofile');
         Route::post('/distributor/viewprofile/{username}','DistributorController@viewProfilePost')->name('distributor.viewprofile');
-        Route::get('/distributor/reports','Controller@report');
-        Route::post('/distributor/reports','Controller@reportPost');
+        Route::get('/distributor/reports','DistributorController@report');
+        Route::post('/distributor/reports','DistributorController@reportPost');
     });
     //Consumer 
         Route::group(['middleware'=>['verifytypeconsumer']],function(){

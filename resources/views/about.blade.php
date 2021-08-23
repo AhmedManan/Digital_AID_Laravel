@@ -1,12 +1,3 @@
-<?php
-
-if($login_failed=="true"){ ?>
-<script type='text/javascript'>alert('Login Failed!');</script>
-<?php
-   session()->put('login_failed','false');
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,12 +38,12 @@ if($login_failed=="true"){ ?>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item active px-lg-4">
+          <li class="nav-item px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="/">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item px-lg-4">
+          <li class="nav-item active px-lg-4">
             <a class="nav-link text-uppercase text-expanded" href="/about">About</a>
           </li>
           <li class="nav-item px-lg-4">
@@ -67,18 +58,17 @@ if($login_failed=="true"){ ?>
          
                 <div class="form-row">
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="email or username" name="username" value= "{{ $login[0] }}">
+                    <input type="text" class="form-control" placeholder="email or username" name="username" value= "">
                     <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                        <input type="checkbox" name="rememberme" class="custom-control-input" id="customControlInline" {{ $login[2] }}>
+                        <input type="checkbox" class="custom-control-input" id="customControlInline">
                         <label class="custom-control-label text-white" for="customControlInline">Remember me</label>
                       </div>
                   </div>
                   <div class="col">
-                    <input type="password" class="form-control" placeholder="password" name="password" value= "{{ $login[1] }}">
-                    <a class="nav-link"  href="/resetpassword">forget password?</a>
+                    <input type="password" class="form-control" placeholder="password" name="password" value= "">
                   </div>
                   <div class="col">
-                  <button type="submit" name="submit" class="btn btn-primary my-1" value="POST">login</button>
+                  <button type="submit" class="btn btn-primary my-1" value="POST">login</button>
                   </div>
                 </div>
               </form>
@@ -89,34 +79,15 @@ if($login_failed=="true"){ ?>
     </div>
   </nav>
 
-  <section class="page-section clearfix">
-    <div class="container">
-      <div class="intro">
-        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="img/intro.jpg" alt="">
-        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-          <h2 class="section-heading mb-4">
-            <span class="section-heading-upper">Emergency</span>
-            <span class="section-heading-lower">AID</span>
-          </h2>
-          <p class="mb-3">It is basically an online platform that has been planned with the intention of making the process of distributing relief products efficient. During the crisis of Bangladesh, most of the the middle-class people and the poor ones left without earning. The government came forward with the intention of helping those who are suffering.
-          </p>
-          <div class="intro-button mx-auto">
-            <a class="btn btn-primary btn-xl" href="/registration">Need Support</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="page-section cta">
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
           <div class="cta-inner text-center rounded">
             <h2 class="section-heading mb-4">
-              <span class="section-heading-upper">Our Promise</span>
+              <span class="section-heading-upper">About</span>
             </h2>
-            <p class="mb-0">Helping the needy will always be our first priority</p>
+            <p class="mb-0">Digital Aid is a non-profit organaization supplies humanitarian aid.</p>
           </div>
         </div>
       </div>

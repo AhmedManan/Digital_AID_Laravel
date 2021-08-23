@@ -39,7 +39,15 @@ class AdminController extends Controller
 
     }
     else if($id==3){
-        $lines[1] = "mainNav\n";
+        $lines[1] = "mainNav2\n";
+
+    }
+    else if($id==4){
+        $lines[1] = "mainNav3\n";
+
+    }
+    else if($id==5){
+        $lines[1] = "mainNav4\n";
 
     }
     $str=implode("",$lines);
@@ -88,6 +96,7 @@ class AdminController extends Controller
         //  echo $user;
         // var_dump($user);
         // print_r($user);
+        
         return view('admin.adminhome') //common for all pages
                                       ->with('dashboard',$dashboard)
                                       ->with('user',$user)
@@ -436,11 +445,7 @@ class AdminController extends Controller
         ->first();
         $userinfoprofile = User_info::where('username',$usernameprofile)
         ->first();
-
-        $userhistory = distributed_aid::where('c_username',$usernameprofile)
-        ->get();
-      
-        return view('admin.viewprofile') //common for all pages
+        return view('admin.adminprofileview') //common for all pages
                                         ->with('dashboard',$dashboard)
                                         ->with('user',$user)
                                         ->with('totalreport',$totalreport)
@@ -450,8 +455,7 @@ class AdminController extends Controller
                                         ->with('pmessagescount',$pmessagescount)                                
 
                                         ->with('userprofile',$userprofile)
-                                        ->with('userinfoprofile',$userinfoprofile)
-                                        ->with('userhistory',$userhistory);
+                                        ->with('userinfoprofile',$userinfoprofile);
                                              
 
      }

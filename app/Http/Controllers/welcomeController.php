@@ -9,6 +9,7 @@ class welcomeController extends Controller
 {
     public function index(Request $req){
 
+
         if(Cookie::get('cookieusername')!==""){
 
             $login[0]=Cookie::get('cookieusername');
@@ -25,7 +26,18 @@ class welcomeController extends Controller
 
         }
 
-        return view('welcome')->with('login',$login);
+        if($req->session()->has('login_failed')){
+
+            $login_failed = $req->session()->get('login_failed');
+            
+        }
+        else{
+            
+            $login_failed = 'not_created';
+            
+        }
+        return view('welcome')->with('login',$login)->with('login_failed',$login_failed);
+
     }
 
 

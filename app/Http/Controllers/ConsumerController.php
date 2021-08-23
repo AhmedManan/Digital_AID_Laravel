@@ -27,10 +27,14 @@ class ConsumerController extends Controller
                 ->first();
         $allmessages= announcement::where('receiver','consumer')
                                     ->where('username','not like','%'.$username.'%')                                   
+                                    ->orWhere('receiver','all')
+                                    ->where('username','not like','%'.$username.'%') 
                                     ->get();
         $allmessagescount= announcement::where('receiver','consumer')
-                                         ->where('username','not like','%'.$username.'%')
-                                            ->count();
+                                        ->where('username','not like','%'.$username.'%')
+                                        ->orWhere('receiver','all')
+                                        ->where('username','not like','%'.$username.'%') 
+                                        ->count();
        
 
         return view('consumer.consumerhome') // common in all
@@ -51,20 +55,24 @@ class ConsumerController extends Controller
                 ->where('login_creds.username','=',$username)
                 ->select('login_creds.id','user_infos.username', 'user_infos.first_name', 'user_infos.last_name','user_infos.person_photo' )
                 ->first();
-        $allmessages= announcement::where('receiver','consumer')
-                                    ->where('username','not like','%'.$username.'%')                                   
-                                    ->get();
-        $allmessagescount= announcement::where('receiver','consumer')
-                                         ->where('username','not like','%'.$username.'%')
-                                            ->count();
+                $allmessages= announcement::where('receiver','consumer')
+                ->where('username','not like','%'.$username.'%')                                   
+                ->orWhere('receiver','all')
+                ->where('username','not like','%'.$username.'%') 
+                ->get();
+                $allmessagescount= announcement::where('receiver','consumer')
+                                    ->where('username','not like','%'.$username.'%')
+                                    ->orWhere('receiver','all')
+                                    ->where('username','not like','%'.$username.'%') 
+                                    ->count();
 
         // $disinvdate=distributed_aid::where('c_username',$username)->groupBy('date')->get();
 
-       $disinvdate= DB::table('distributed_aids')
-                     ->select('date')
-                     ->where('c_username',$username)                    
-                     ->groupBy('date')
-                     ->get();
+                    $disinvdate= DB::table('distributed_aids')
+                                    ->select('date')
+                                    ->where('c_username',$username)                    
+                                    ->groupBy('date')
+                                    ->get();
                      
                     //  echo $disinvdate;
                      
@@ -116,15 +124,14 @@ class ConsumerController extends Controller
 
         $username= $req->session()->get('sessionusername');
 
-       // $announcement=announcement::where('id',$id)->first();
 
-        $allmessages= announcement::where('receiver','consumer')
-        ->where('username','not like','%'.$username.'%')                                   
-        ->first();
+        $allmessages= announcement::where('receiver','consumer')                                         
+                                    ->where('username','not like','%'.$username.'%')                                   
+                                    ->get();
 
         $allmessagescount= announcement::where('receiver','consumer')
-        ->where('username','not like','%'.$username.'%')
-           ->count();
+                                        ->where('username','not like','%'.$username.'%')
+                                        ->count();
 
         return response()->json(array('allmsg'=> $allmessages,'msgcount'=> $allmessagescount), 200);    
 
@@ -141,15 +148,16 @@ class ConsumerController extends Controller
 
         $announcement->save();
 
-        $allmessages= announcement::where('receiver','consumer')
-        ->where('username','not like','%'.$username.'%')                                   
-        ->get();
+        // $allmessages= announcement::where('receiver','consumer')
+        // ->where('username','not like','%'.$username.'%')                                   
+        // ->get();
 
-        $allmessagescount= announcement::where('receiver','consumer')
-        ->where('username','not like','%'.$username.'%')
-           ->count();
+        // $allmessagescount= announcement::where('receiver','consumer')
+        // ->where('username','not like','%'.$username.'%')
+        //    ->count();
 
-        return response()->json(array('msgcount'=> $allmessagescount), 200);      
+        // return response()->json(array('msgcount'=> $allmessagescount), 200);   
+        return redirect("/consumer");
         
     }
 
@@ -164,12 +172,16 @@ class ConsumerController extends Controller
                 ->where('login_creds.username','=',$username)
                 ->select('login_creds.id','user_infos.username', 'user_infos.email', 'user_infos.first_name', 'user_infos.last_name','user_infos.person_photo' )
                 ->first();
-        $allmessages= announcement::where('receiver','consumer')
-                                    ->where('username','not like','%'.$username.'%')                                   
-                                    ->get();
-        $allmessagescount= announcement::where('receiver','consumer')
-                                         ->where('username','not like','%'.$username.'%')
-                                            ->count();
+                $allmessages= announcement::where('receiver','consumer')
+                ->where('username','not like','%'.$username.'%')                                   
+                ->orWhere('receiver','all')
+                ->where('username','not like','%'.$username.'%') 
+                ->get();
+                $allmessagescount= announcement::where('receiver','consumer')
+                    ->where('username','not like','%'.$username.'%')
+                    ->orWhere('receiver','all')
+                    ->where('username','not like','%'.$username.'%') 
+                    ->count();
          $email=$user->email;
          $report = report::where('sender_email',$email)->get();
          $reportcount = report::where('sender_email',$email)->count();
@@ -215,11 +227,15 @@ class ConsumerController extends Controller
                 ->select('login_creds.id','user_infos.username', 'user_infos.first_name', 'user_infos.last_name','user_infos.person_photo' )
                 ->first();
                 $allmessages= announcement::where('receiver','consumer')
-                                            ->where('username','not like','%'.$username.'%')                                   
-                                            ->get();
+                ->where('username','not like','%'.$username.'%')                                   
+                ->orWhere('receiver','all')
+                ->where('username','not like','%'.$username.'%') 
+                ->get();
                 $allmessagescount= announcement::where('receiver','consumer')
-                                                ->where('username','not like','%'.$username.'%')
-                                                ->count();                 
+                    ->where('username','not like','%'.$username.'%')
+                    ->orWhere('receiver','all')
+                    ->where('username','not like','%'.$username.'%') 
+                    ->count();              
 
                 $userprofile = Login_cred::where('username',$usernameprofile)
                                             ->first();

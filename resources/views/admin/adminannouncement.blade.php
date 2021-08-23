@@ -14,18 +14,6 @@
 			<div class="main-panel">
 				<div class="content">
 					<div class="container-fluid">
-						<nav>
-							<div class="nav nav-tabs" id="nav-tab" role="tablist">
-							  <a class="nav-item nav-link active" id="nav-inbox-tab" data-toggle="tab" href="#nav-inbox" role="tab" aria-controls="nav-inbox" aria-selected="true"><h4 class="page-title">Inbox</h4></a>
-							  <a class="nav-item nav-link" id="nav-Announcement-tab" data-toggle="tab" href="#nav-announcement" role="tab" aria-controls="nav-announcement" aria-selected="false"><h4 class="page-title">Announcement</h4></a>
-							</div>
-						  </nav>
-						  <div class="tab-content" id="nav-tabContent">
-							<div class="tab-pane fade show active" id="nav-inbox" role="tabpanel" aria-labelledby="nav-inbox-tab">
-
-
-							</div>
-							<div class="tab-pane fade" id="nav-announcement" role="tabpanel" aria-labelledby="nav-announcement-tab">
 								<form method="post" >
 									<input type="text" name="description" placeholder="your announcement" class="form-control">
 									<br/>
@@ -41,7 +29,6 @@
 									<input type="submit" name="submit" class="btn btn-success">
 					
 								</form>
-							</div>
 						  </div>
 					</div>
 				</div>

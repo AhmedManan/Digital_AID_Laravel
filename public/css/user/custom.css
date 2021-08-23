@@ -79,6 +79,23 @@ p {
   font-family: 'Raleway';
 }
 
+#mainNav2 {
+  background-color: #87CEEB;
+  font-family: 'Raleway';
+}
+
+#mainNav3 {
+  background-color: #D9AFD9;
+  background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);  
+  font-family: 'Raleway';
+}
+
+#mainNav4 {
+  background-color: #7f5a83;
+  background-image: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
+  font-family: 'Raleway';
+}
+
 #mainNav .navbar-brand {
   color: #e6a756;
 }

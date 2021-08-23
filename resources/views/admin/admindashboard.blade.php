@@ -5,7 +5,7 @@ $myFile = "cnf/".$user->username.".txt";
 $lines = file($myFile);//file in to an array
 if(count($lines)>0){
 
-	$str = str_replace(array("\r","\n"), "", $lines[1]);
+	$str1 = str_replace(array("\r","\n"), "", $lines[1]);
 }
 else{
 	$str="mainNav";
@@ -20,9 +20,9 @@ else{
 ?>
 
 <div class="wrapper">
-		<div class="main-header" id="{{$str}}">
+		<div class="main-header" id="{{$str1}}">
 			<div class="logo-header">
-				<a href="" class="logo">
+				<a href="/admin" class="logo">
 					Digital AID
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@ else{
 				</button>
 				<button class="topbar-toggler more"><i class="la la-ellipsis-v"></i></button>
 			</div>
-			<nav class="navbar navbar-header navbar-expand-lg" id="mainNav">
+			<nav class="navbar navbar-header navbar-expand-lg" id="{{$str1}}">
 				<div class="container-fluid">
 					
 					<!-- <form class="navbar-left navbar-form nav-search mr-md-3" action="">
@@ -86,7 +86,7 @@ else{
 								</li>
 								<li>
 									<div class="notif-center">
-										<a href="/admin/users">
+										<a href="/admin/unverifiedusers">
 											<div class="notif-icon notif-primary"> <i class="la la-user-plus"></i> </div>
 											<div class="notif-content">
 												<span class="block">
@@ -118,7 +118,7 @@ else{
 										<div class="u-img"><img src="/img/user/profilepic/{{$user->person_photo}}.jpg" alt="user"></div>
 										<div class="u-text">
 											<h4>{{$user->username}}</h4>
-											<p class="text-muted">{{$user->first_name}} {{$user->last_name}}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+											<p class="text-muted">{{$user->first_name}} {{$user->last_name}}</p><a href="/admin/viewprofile/{{$user->username}}" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
 										</div>
 									</li>
 									<!-- <div class="dropdown-divider"></div>
@@ -135,7 +135,7 @@ else{
 					</div>
 				</nav>
 			</div>
-			<div class="sidebar" id="mainNav">
+			<div class="sidebar" id="{{$str1}}">
 				<div class="scrollbar-inner sidebar-wrapper">
 					<div class="user">
 						<div class="photo">
@@ -158,11 +158,11 @@ else{
 											<span class="link-collapse">My Profile</span>
 										</a>
 									</li>
-									<li>
+									<!-- <li>
 										<a href="/admin/viewprofile/{{$user->username}}">
 											<span class="link-collapse">Edit Profile</span>
 										</a>
-									</li>
+									</li> -->
 									<li>
 										<a href="/admin/theme">
 											<span class="link-collapse">Settings</span>
@@ -187,7 +187,7 @@ else{
 								@endif
 							</a>
 						</li>
-						<li class="nav-item">
+						<!-- <li class="nav-item">
 							<a href="/admin/users">
 								<i class="la la-users"></i>
 								<p>All Users</p>
@@ -195,7 +195,7 @@ else{
 								<span class="badge badge-danger">{{$invaliduser}}</span>
 								@endif
 							</a>
-						</li>
+						</li> -->
 						<li class="nav-item">
 							<a class="" data-toggle="collapse" href="#users" aria-expanded="true">
 									<i class="la la-users"></i>
@@ -246,13 +246,6 @@ else{
 								@if($itemstatus > 0)
 								<span class="badge badge-danger">{{$itemstatus}}</span>
 								@endif
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="notifications.html">
-								<i class="la la-bell"></i>
-								<p>Notifications</p>
-								<span class="badge badge-success">3</span>
 							</a>
 						</li>
 						<li class="nav-item">

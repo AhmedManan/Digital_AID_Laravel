@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="/css/user/ready.css">
 	<link rel="stylesheet" href="/css/user/demo.css">
 </head>
-<body onload="background()">
+<body>
 @include('distributor/distributordashboard')
 			<div class="main-panel">
 				<div class="content">

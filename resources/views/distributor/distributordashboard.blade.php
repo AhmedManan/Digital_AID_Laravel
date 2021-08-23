@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 var mymsg="ss";
 function myTimer() {
 	$.ajax({
@@ -59,7 +59,7 @@ function background() {
 	}
 
 
-</script>
+</script> -->
 
 <div class="wrapper">
 		<div class="main-header">
@@ -121,15 +121,11 @@ function background() {
 										<div class="u-img"><img src="../assets/img/profile.jpg" alt="user"></div>
 										<div class="u-text">
 											<h4>{{$user->username}}</h4>
-											<p class="text-muted">{{$user->first_name}} {{$user->last_name}}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+											<p class="text-muted">{{$user->first_name}} {{$user->last_name}}</p><a href="/distributor/viewprofile/{{$user->username}}" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
 										</div>
 									</li>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>
-									<a class="dropdown-item" href="#"><i class="ti-email"></i> Inbox</a>
-									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
-									<div class="dropdown-divider"></div>
+									<!-- <a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a> -->
 									<a class="dropdown-item" href="/logout"><i class="fa fa-power-off"></i> Logout</a>
 								</ul>
 								<!-- /.dropdown-user -->
@@ -161,11 +157,11 @@ function background() {
 											<span class="link-collapse">My Profile</span>
 										</a>
 									</li>
-									<li>
+									<!-- <li>
 										<a href="/distributor/viewprofile/{{$user->username}}">
 											<span class="link-collapse">Edit Profile</span>
 										</a>
-									</li>
+									</li> -->
 									<li>
 										<a href="/logout">
 											<span class="link-collapse">Logout</span>
@@ -240,4 +236,4 @@ function background() {
 					</ul>
 				</div>
 			</div>
-			@include('distributor/modal');
+			<!-- @include('distributor/modal'); -->

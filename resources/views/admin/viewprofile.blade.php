@@ -11,6 +11,7 @@
     <script type="text/javascript" src="/qrcode.js"></script>
     <script type="text/javascript" src="/js/instascan.min.js" ></script>
 </head>
+<!-- @include('front-end/photoupload') -->
 <body>
 @include('admin/admindashboard')
 			<div class="main-panel">
@@ -41,35 +42,25 @@
                                     @endif
                                 </ul>
                                 
-                                <div class="card-title mb-4">
-                                    <div class="d-flex justify-content-start">
-                                        <div class="image-container">
-                                        <form method="post" enctype="multipart/form-data" action="/admin/updatepicture">
-        
-                                            <img src="/img/user/profilepic/{{$userinfoprofile->person_photo}}.jpg" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
-                                            <input class="form-control" name="picturetitle" type="hidden" value="{{$userinfoprofile->username}}" >
-                                            @if($userinfoprofile->username==session('sessionusername'))
-                                            <div>
-                                                <input type="file" name="file" class="form-control-file">
-                                                <input type="submit"  value="submit" class="btn btn-success">
-                                            </div>
-                                            @endif	
-                                        </form>
-                                        </div>
-                                        <div class="userData ml-3">
-                                            <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">{{$userprofile->username}}</a></h2>
-                                            <span class="badge badge-default">{{$userprofile->usertype}}</span>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="tab-content ml-1" id="myTabContent">
                                     
-                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                    <section class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
                                         
+                                        <div class="card-title mb-4">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="image-container">
+                                                    <img src="/img/user/profilepic/{{$userinfoprofile->person_photo}}.jpg" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                                    <input class="form-control" name="picturetitle" type="hidden" value="{{$userinfoprofile->username}}" >
+                                                </div>
+                                                <div class="userData ml-3">
+                                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">{{$userprofile->username}}</a></h2>
+                                                    <span class="badge badge-default">{{$userprofile->usertype}}</span>
+                                                </div>
+                                                <div class="ml-auto">
+                                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -79,7 +70,7 @@
 											{{$userinfoprofile->first_name}} {{$userinfoprofile->last_name}}
                                             </div>
                                         </div>
-										<hr />
+										<hr>
 										
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -89,7 +80,7 @@
 											{{$userinfoprofile->email}}
                                             </div>
                                         </div>
-										<hr />
+										<hr>
 										
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -99,7 +90,7 @@
 											{{$userinfoprofile->phone}}
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr>
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -109,7 +100,7 @@
 											{{$userinfoprofile->nid_no}}
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr>
                                         
                                         
                                         <div class="row">
@@ -120,7 +111,7 @@
 											{{$userinfoprofile->gender}}
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr>
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Birth Date</label>
@@ -129,7 +120,7 @@
 											{{$userinfoprofile->birthdate}}
                                             </div>
                                         </div>
-										<hr />
+										<hr>
 										
 
                                         <div class="row">
@@ -140,11 +131,50 @@
 											{{$userinfoprofile->joindate}}
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr>
 
-                                 </div>
-                                <div class="tab-pane fade" id="updateInfo" role="tabpanel" aria-labelledby="updateInfo-tab">
-										<!-- update form start  -->
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Address</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+											{{$userinfoprofile->house}}, {{$userinfoprofile->ward}}-{{$userinfoprofile->union}}, {{$userinfoprofile->upzilla}}, {{$userinfoprofile->zilla}}, {{$userinfoprofile->division}}
+                                            </div>
+                                        </div>
+                                        <hr>
+
+                                    </section>
+
+                                <section class="tab-pane fade" id="updateInfo" role="tabpanel" aria-labelledby="updateInfo-tab">
+                                        <!-- update form start  -->
+                                        
+                                        <div class="card-title mb-4">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="image-container">
+                                                <form method="post" enctype="multipart/form-data" action="/admin/updatepicture">
+                
+                                                    <img src="/img/user/profilepic/{{$userinfoprofile->person_photo}}.jpg" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                                    <input class="form-control" name="picturetitle" type="hidden" value="{{$userinfoprofile->username}}" >
+                                                    @if($userinfoprofile->username==session('sessionusername'))
+                                                    <div class="userData ml-2">
+                                                        <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#changepropic">Change Profile Picture</button> -->
+                                                        <input type="file" name="file" class="btn btn-info btn-sm" class="form-control-file">
+                                                        <input type="submit"  value="submit" class="btn btn-success">
+                                                    </div>
+                                                    @endif	
+                                                </form>
+                                                </div>
+                                                <!-- <div class="userData ml-3">
+                                                    <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a href="javascript:void(0);">{{$userprofile->username}}</a></h2>
+                                                    <span class="badge badge-default">{{$userprofile->usertype}}</span>
+                                                </div> -->
+                                                <div class="ml-auto">
+                                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                                </div>
+                                            </div>
+                                        </div>
+
 										<form method="POST"  enctype="multipart/form-data" >
 									<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -162,7 +192,7 @@
  											 </div>
                                             </div>
                                         </div>
-										<hr />
+										<hr>
 										
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -172,7 +202,7 @@
 											<input type="text" class="form-control" placeholder="email" value="{{$userinfoprofile->email}}" name="email">
                                             </div>
                                         </div>
-										<hr />
+										<hr>
 
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -182,7 +212,7 @@
 											<input class="form-control" type="text" value="{{$userinfoprofile->username}}" id="" readonly>
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr>
 										
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -192,27 +222,19 @@
 											<input type="text" class="form-control" placeholder="phone no" value="{{$userinfoprofile->phone}}" name="phone">
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr>
 
-                                        <div class="col-sm-3 col-md-2 col-5">
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Password</label>
                                             </div>
+                                          
                                             <div class="col-md-8 col-6">
-											
-											<div class="row">
-    											<div class="col">
-      											<input type="password" class="form-control" placeholder="Current password" value="" name="currentpassword">
-   											 </div>
-  											  <div class="col">
-   											   <input type="password" class="form-control" placeholder="New Password" value="" name="password">
-                                                </div>
-                                                <div class="col">
-   											   <input type="password" class="form-control" placeholder="Confirm Password" value="" name="password_confirmation">
-   											 </div>
- 											 </div>
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#changepassword">Change Password</button>
+                                                @include('admin/viewprofile/changepass-modal')
                                             </div>
-                                        
-										<hr />
+                                        </div>
+                                        <hr>
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -222,7 +244,7 @@
 											<input type="text" class="form-control" placeholder="National ID Number" value="{{$userinfoprofile->nid_no}}" name="nid_no">
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr>
                                         
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -251,7 +273,7 @@
 											</select>
 											</div>
                                         </div>
-										<hr />
+										<hr>
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -261,7 +283,7 @@
 											<input class="form-control" type="date" value="{{$userinfoprofile->birthdate}}" id="example-date-input">
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr>
 									
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -271,7 +293,7 @@
 											<input type="text" class="form-control" readonly value="{{$userinfoprofile->joindate}}" name="phone">
                                             </div>
                                         </div>
-										<hr />
+										<hr>
 
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -298,7 +320,7 @@
 											</select>
 											</div>
                                         </div>
-										<hr />
+										<hr>
 
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -309,11 +331,11 @@
 											
 									<input class="form-control" name="nidtitle" type="hidden" value="{{$userinfoprofile->nid_no}}" >
 
-								<input type="file" name="file" class="form-control-file">
+								<input type="file" class="btn btn-info btn-sm" name="file" class="form-control-file">
 
                                             </div>
                                         </div>
-                                        <hr />
+                                        <hr>
 
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
@@ -321,19 +343,89 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                 @if($userinfoprofile->username==session('sessionusername'))
-                                            <input type="submit" name="submit" value="update">
-                                            @endif
-											<input type="submit" name="submit" value="delete">
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#currentpassword">Update</button>
+                                                <!-- <input type="submit" name="submit" value="update"> -->
+                                                @endif
+                                                <input type="submit" class="btn btn-danger" name="submit" value="delete">
+                                                @include('admin/viewprofile/currentpass-modal')
                                             </div>
                                         </div>
-										<hr />
+										<hr>
                                     </form>
-                                    </div>
-									<!-- update form end -->
+                                </section>
+                                    <!-- update form end -->
+                                    
                                     <!-- History start -->
-                                    <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
-                                        <form method="POST" action="/admin/userupdate">
+                                    <section class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+                                        <!-- update form start  -->
+                                        
+                                        <div class="card-title mb-4">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="image-container">
+                                                <form method="post" enctype="multipart/form-data" action="/admin/updatepicture">
+                
+                                                    <img src="/img/user/profilepic/{{$userinfoprofile->person_photo}}.jpg" id="imgProfile" style="width: 150px; height: 150px" class="img-thumbnail" />
+                                                    <input class="form-control" name="picturetitle" type="hidden" value="{{$userinfoprofile->username}}" >
+                                                    @if($userinfoprofile->username==session('sessionusername'))
+                                                    <div class="userData ml-2">
+                                                        <!-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#changepropic">Change Profile Picture</button> -->
+                                                        <input type="file" name="file" class="btn btn-info btn-sm" class="form-control-file">
+                                                        <input type="submit"  value="submit" class="btn btn-success">
+                                                    </div>
+                                                    @endif	
+                                                </form>
+                                                </div>
+                                                <div class="ml-auto">
+                                                    <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+										<form method="POST"  enctype="multipart/form-data" >
                                             <input type="hidden" name="username" value="{{$userprofile->username}}">
+                                            <div class="row">
+                                                <div class="col-sm-3 col-md-2 col-5">
+                                                    <label style="font-weight:bold;">User Type</label>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                <select name="usertype" class="browser-default custom-select">
+                                                @if($userprofile->usertype=="admin")																
+                                                    
+                                                <option selected value="admin">admin</option>
+                                                  <option  value="distributor">distributor</option>
+                                                  <option  value="consumer">consumer</option>
+                                                @elseif($userprofile->usertype=="distributor")															
+                                                    
+                                                <option value="admin">admin</option>
+                                                  <option selected value="distributor">distributor</option>
+                                                  <option  value="consumer">consumer</option>
+                                                @elseif($userprofile->usertype=="consumer")															
+                                                    
+                                                <option value="admin">admin</option>
+                                                  <option value="distributor">distributor</option>
+                                                  <option selected value="consumer">consumer</option>
+                                                @endif
+                                                </select>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-sm-3 col-md-2 col-5">
+                                                    <label style="font-weight:bold;">Action</label>
+                                                </div>
+                                                <div class="col-md-8 col-6">
+                                                <input type="submit" name="submit" value="update">
+                                                @if($userinfoprofile->username==session('sessionusername'))
+                                                <input type="submit" name="submit" value="delete">
+                                                @endif
+                                                </div>
+                                            </div>
+                                    </form>
+                                </section>
+
+                                    <!-- <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+                                        <form method="POST" action="/admin/userupdate">
+                                        <input type="hidden" name="username" value="{{$userprofile->username}}">
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">User Type</label>
@@ -359,7 +451,7 @@
 											</select>
 											</div>
                                         </div>
-                                        <hr />
+                                        <hr>
 										<div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Action</label>
@@ -371,9 +463,9 @@
                                             @endif
                                             </div>
                                         </div>
-										<hr />
+										<hr>
                                     </form>
-                                    </div>
+                                    </div> -->
 
 
 									<!-- History end -->
@@ -393,9 +485,8 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+    </div>
 </body>
-
 <script src="/js/user/core/jquery.3.2.1.min.js"></script>
 <script src="/js/user/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script src="/js/user/core/popper.min.js"></script>
