@@ -62,28 +62,9 @@ if($login_failed=="true"){ ?>
             <a class="nav-link text-uppercase text-expanded" href="/registration">Registration</a>
           </li>
           <li>
-            <!-- login form  -->
-            <form method="POST" action="/login">
-         
-                <div class="form-row">
-                  <div class="col">
-                    <input type="text" class="form-control" placeholder="email or username" name="username" value= "{{ $login[0] }}">
-                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                        <input type="checkbox" name="rememberme" class="custom-control-input" id="customControlInline" {{ $login[2] }}>
-                        <label class="custom-control-label text-white" for="customControlInline">Remember me</label>
-                      </div>
-                  </div>
-                  <div class="col">
-                    <input type="password" class="form-control" placeholder="password" name="password" value= "{{ $login[1] }}">
-                    <a class="nav-link"  href="/resetpassword">forget password?</a>
-                  </div>
-                  <div class="col">
-                  <button type="submit" name="submit" class="btn btn-primary my-1" value="POST">login</button>
-                  </div>
-                </div>
-              </form>
-              <!-- login form end -->
-        </li>
+            <!-- login Function -->
+            @include('modules/login')
+          </li>
         </ul>
       </div>
     </div>
