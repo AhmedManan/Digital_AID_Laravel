@@ -243,11 +243,7 @@ Your use of this website and any dispute arising out of such use of the website 
 
   <footer class="footer text-faded text-center py-5">
     <div class="container">
-      <p class="m-0 small">Copyright &copy; Broti, Gazi Manan Ahmed
-        <br>
-        Badhan, Sadia Afrin
-        <br>
-        Fatemi, Omer Fahim
+      <p class="m-0 small">Copyright &copy; Manan Ahmed Broti
       </p>
     </div>
   </footer>
