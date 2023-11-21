@@ -20,14 +20,14 @@ if($login_failed=="true"){ ?>
   <title>Digital Aid</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{asset('public/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/business-casual.min.css" rel="stylesheet">
+  <link href="{{asset('public/css/business-casual.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -53,13 +53,13 @@ if($login_failed=="true"){ ?>
             </a>
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="/about">About</a>
+            <a class="nav-link text-uppercase text-expanded" href="{{url('/about')}}">About</a>
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="/contact">Contact</a>
+            <a class="nav-link text-uppercase text-expanded" href="{{url('/contact')}}">Contact</a>
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="/registration">Registration</a>
+            <a class="nav-link text-uppercase text-expanded" href="{{url('/registration')}}">Registration</a>
           </li>
           <li>
             <!-- login form  -->
@@ -92,7 +92,7 @@ if($login_failed=="true"){ ?>
   <section class="page-section clearfix">
     <div class="container">
       <div class="intro">
-        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="img/intro.jpg" alt="">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{asset('public/img/intro.jpg')}}" alt="">
         <div class="intro-text left-0 text-center bg-faded p-5 rounded">
           <h2 class="section-heading mb-4">
             <span class="section-heading-upper">Emergency</span>
@@ -101,7 +101,7 @@ if($login_failed=="true"){ ?>
           <p class="mb-3">It is basically an online platform that has been planned with the intention of making the process of distributing relief products efficient. During the crisis of Bangladesh, most of the the middle-class people and the poor ones left without earning. The government came forward with the intention of helping those who are suffering.
           </p>
           <div class="intro-button mx-auto">
-            <a class="btn btn-primary btn-xl" href="/registration">Need Support</a>
+            <a class="btn btn-primary btn-xl" href="{{url('/registration')}}">Need Support</a>
           </div>
         </div>
       </div>
@@ -135,8 +135,8 @@ if($login_failed=="true"){ ?>
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{asset('public/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('public/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 </body>
 

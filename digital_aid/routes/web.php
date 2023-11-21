@@ -9,15 +9,19 @@ use App\Http\Controllers\welcomeController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/', [welcomeController::class, 'index']);
+Route::get('/', [welcomeController::class, 'index'])->name('home');
 
-Route::post('/login', 'LoginController@index');
+
+Route::post('/login', [LoginController::class, 'index'])->name('login');
 
 Route::get('/registration','RegistrationController@index');
 
@@ -102,8 +106,4 @@ Route::group(['middleware'=>['logincheck']],function(){
             Route::post('/consumer/updatepicture','ConsumerController@updatePicturePost');
         });
 });
-
-
-
-
 
