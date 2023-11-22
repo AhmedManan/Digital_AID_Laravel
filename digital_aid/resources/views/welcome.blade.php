@@ -48,7 +48,7 @@ if($login_failed=="true"){ ?>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item active px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="/">Home
+            <a class="nav-link text-uppercase text-expanded" href="{{url('/')}}">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -63,7 +63,7 @@ if($login_failed=="true"){ ?>
           </li>
           <li>
             <!-- login form  -->
-            <form method="POST" action="/login">
+            <form method="POST" action="{{url('/login')}}">
          
                 <div class="form-row">
                   <div class="col">

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\welcomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,7 @@ Route::get('/', [welcomeController::class, 'index'])->name('home');
 
 Route::post('/login', [LoginController::class, 'index'])->name('login');
 
-Route::get('/registration','RegistrationController@index');
+Route::get('/registration', [RegistrationController::class, 'index'])->name('registration');
 
 Route::post('/registration','RegistrationController@registrationPost');
 
