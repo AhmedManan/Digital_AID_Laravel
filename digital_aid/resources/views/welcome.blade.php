@@ -64,7 +64,7 @@ if($login_failed=="true"){ ?>
           <li>
             <!-- login form  -->
             <form method="POST" action="{{url('/login')}}">
-         
+            @csrf
                 <div class="form-row">
                   <div class="col">
                     <input type="text" class="form-control" placeholder="username" name="username" value= "{{ $login[0] }}">

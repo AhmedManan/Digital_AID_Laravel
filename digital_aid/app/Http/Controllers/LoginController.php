@@ -3,79 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
-use App\Login_cred;
+use App\Models\Login_cred;
 
 class LoginController extends Controller
 {
-    public function index(Request $req){
-       
-        $username= $req->username;
-        $password=$req->password;
+    public function index(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
 
+        if (Auth::attempt($credentials, $request->rememberme)) {
+            $user = Auth::user();
 
+            // Session creation
+            $request->session()->put('sessionusername', $user->username);
+            $request->session()->put('sessionusertype', $user->usertype);
+            echo '<pre>';
+            print_r($request->session()->put('sessionusertype', $user->usertype));
+            exit;
 
-        $user = Login_cred::where('username',$username)
-                          ->where('password',$password)
-                          ->first();
-        if(!empty($user)){
-            $req->session()->put('sessionusername',$user->username);//session creation
-            $req->session()->put('sessionusertype',$user->usertype);
-
-            //cookies
-
-            if($req->rememberme){
-                Cookie::queue(Cookie::make('cookieusername', $username, 60));
-                Cookie::queue(Cookie::make('cookiepassword', $password, 60));
-                
-                
+            // Cookies
+            if ($request->rememberme) {
+                Cookie::queue(Cookie::make('cookieusername', $user->username, 60));
+                Cookie::queue(Cookie::make('cookiepassword', $request->password, 60));
+            } else {
+                Cookie::queue(Cookie::make('cookieusername', null, -1));
+                Cookie::queue(Cookie::make('cookiepassword', null, -1));
             }
-            else{
 
-                Cookie::queue(Cookie::make('cookieusername', "", 60));
-                Cookie::queue(Cookie::make('cookiepassword', "", 60));
-                
+            // File operations
+            $filePath = 'cnf/' . $request->session()->get('sessionusername') . '.txt';
+            if (!file_exists(storage_path($filePath))) {
+                file_put_contents(storage_path($filePath), '');
             }
-            
 
-            //
-            if($user->usertype=="admin" && $user->status=="valid" ){
-
-                if(!file_exists('cnf/'.$req->session()->get('sessionusername').".txt")){
-                    $myfile = fopen('cnf/'.$req->session()->get('sessionusername').".txt", "w");
-                    $txt = "\n";
-                    fwrite($myfile, $txt);
-                    $txt = "\n";
-                    fwrite($myfile, $txt);
-                    $txt = "\n";
-                    fwrite($myfile, $txt);
-                    fclose($myfile);
-                }    
-                $message = "wrong answer";
-                echo "<script type='text/javascript'>alert('$message');</script>";
+            // Redirect based on user type and status
+            if ($user->usertype == "admin" && $user->status == "valid") {
                 return redirect('/admin');
-
-            }
-            else if($user->usertype=="distributor" && $user->status=="valid" ){
-
+            } elseif ($user->usertype == "distributor" && $user->status == "valid") {
                 return redirect('/distributor');
-
-            }
-            else if($user->usertype=="consumer" && $user->status=="valid" ){
-
+            } elseif ($user->usertype == "consumer" && $user->status == "valid") {
                 return redirect('/consumer');
-
-            }
-            else{
+            } else {
                 return redirect('/');
             }
-        }
-        else{
-            $req->session()->put('login_failed','true');
+        } else {
+            $request->session()->flash('login_failed', true);
             return redirect('/');
         }
-
-
     }
 }

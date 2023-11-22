@@ -40,22 +40,22 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav mx-auto">
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="/">Home
+            <a class="nav-link text-uppercase text-expanded" href="{{url('/')}}">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="/about">About</a>
+            <a class="nav-link text-uppercase text-expanded" href="{{url('/about')}}">About</a>
           </li>
           <li class="nav-item px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="/contact">Contact</a>
+            <a class="nav-link text-uppercase text-expanded" href="{{url('/contact')}}">Contact</a>
           </li>
           <li class="nav-item active px-lg-4">
-            <a class="nav-link text-uppercase text-expanded" href="/registration">Registration</a>
+            <a class="nav-link text-uppercase text-expanded" href="{{url('/registration')}}">Registration</a>
           </li>
           <li>
             <!-- login form  -->
-            <form method="POST" action="/login">
+            <form method="POST" action="{{url('/login')}}">
          
                 <div class="form-row">
                   <div class="col">
@@ -92,7 +92,7 @@
             <div style="width: 500px;" class="table-responsive my-table table-hover">
             <table>
             <!-- <form method="POST" action="/registration" id="regform" enctype="multipart/form-data" onsubmit="validateCaptcha()"> -->
-            <form method="POST" action="/registration" id="regform" enctype="multipart/form-data">
+            <form method="POST" action="{{url('/registration')}}" id="regform" enctype="multipart/form-data">
            <tr>
            <th>Photo</th>
            <td><div  class="box">

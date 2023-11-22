@@ -43,8 +43,8 @@ Route::get('/theme/{id}','AdminController@themeChange');
 
 
 
-Route::group(['middleware'=>['logincheck']],function(){
-    //admin 
+// Route::group(['middleware'=>['logincheck']],function(){
+//     //admin 
     Route::group(['middleware'=>['verifytypeadmin']],function(){
             
         Route::get('/admin','AdminController@index');
@@ -107,5 +107,5 @@ Route::group(['middleware'=>['logincheck']],function(){
             Route::post('/consumer/viewprofile/{username}','ConsumerController@viewProfilePost')->name('consumer.viewprofile');
             Route::post('/consumer/updatepicture','ConsumerController@updatePicturePost');
         });
-});
+// });
 
